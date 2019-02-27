@@ -17,7 +17,7 @@ namespace TimeToGo.Controllers
             _mapsService = mapsService;
         }
 
-        [HttpGet("get/directions/{origin}/{destination}")]
+        [HttpGet("get/directions/{origin}&{destination}")]
         public async Task<IActionResult> GetDirections(string origin, string destination)
         {
             var result = await _mapsService.GetDirectionFromParameters(origin, destination);
