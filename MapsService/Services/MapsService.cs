@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using static MapsService.Libs.Models.MapModel;
 
 namespace MapsService.Libs.Services
 {
@@ -16,7 +17,7 @@ namespace MapsService.Libs.Services
             _getDirections = getDirections;
         }
 
-        public async Task<MapModel> GetDirectionFromParameters(string origin, string destination)
+        public async Task<RootObject> GetDirectionFromParameters(string origin, string destination)
         {
             return await _getDirections.ReturnDirectionsFromParameters(origin, destination);
         }

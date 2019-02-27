@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using static MapsService.Libs.Models.MapModel;
 
 namespace MapsService.Libs.Maps
 {
     public class GetDirections : IGetDirections
     {
-        public async Task<MapModel> ReturnDirectionsFromParameters(string origin, string destination)
+        public async Task<RootObject> ReturnDirectionsFromParameters(string origin, string destination)
         {
             using (var client = new HttpClient())
             {
-                const string mapsKey = "Insert API Key";
+                const string mapsKey = "INSERT API KEY";
                 var url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
 
                 var response = await client.GetAsync(url).ConfigureAwait(false);
@@ -26,7 +27,9 @@ namespace MapsService.Libs.Maps
                     json = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }
 
-                return JsonConvert.DeserializeObject<MapModel>(json);
+                RootObject result = JsonConvert.DeserializeObject<RootObject>(json);
+
+                return result;
             }
         }
     }
