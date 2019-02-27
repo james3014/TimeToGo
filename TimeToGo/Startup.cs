@@ -39,12 +39,7 @@ namespace TimeToGo
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
