@@ -15,7 +15,7 @@ namespace MapsService.Libs.Maps
         {
             using (var client = new HttpClient())
             {
-                const string mapsKey = "AIzaSyBADy4pXa_qPDv1ofPCFYYliRBOmmCzSGI";
+                const string mapsKey = "INSERT API KEY";
                 var url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
 
                 var response = await client.GetAsync(url).ConfigureAwait(false);
