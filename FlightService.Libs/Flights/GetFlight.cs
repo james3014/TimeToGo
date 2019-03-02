@@ -1,22 +1,22 @@
-﻿using MapsService.Libs.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static MapsService.Libs.Models.MapModel;
+using static FlightService.Libs.Models.Flight;
 
-namespace MapsService.Libs.Maps
+namespace FlightService.Libs.Flights
 {
-    public class GetDirections : IGetDirections
+    public class GetFlight : IGetFlight
     {
-        public async Task<RootObject> ReturnDirectionsFromParameters(string origin, string destination)
+        public async Task<RootObject> ReturnArrivalFromParameters(string airport, int howMany, string filter, int offset)
         {
             using (var client = new HttpClient())
             {
-                const string mapsKey = "AIzaSyBADy4pXa_qPDv1ofPCFYYliRBOmmCzSGI";
-                var url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
+                /// Authentication Headers Required ///
+
+                var url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/Scheduled?airport=EGPF&howMany=1&filter=airline&offset=0");
 
                 var response = await client.GetAsync(url).ConfigureAwait(false);
 
@@ -30,6 +30,7 @@ namespace MapsService.Libs.Maps
                 RootObject result = JsonConvert.DeserializeObject<RootObject>(json);
 
                 return result;
+
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlightService.Libs.Services;
 using MapsService.Libs.Maps;
 using MapsService.Libs.Services;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,7 @@ namespace TimeToGo
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IMapsService, MapsService.Libs.Services.MapsService>();
             services.AddSingleton<IGetDirections, GetDirections>();
+            services.AddSingleton<IFlightService, FlightService.Libs.Services.FlightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
