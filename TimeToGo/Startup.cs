@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlightService.Libs.Flights;
 using FlightService.Libs.Services;
 using MapsService.Libs.Maps;
 using MapsService.Libs.Services;
@@ -32,6 +33,7 @@ namespace TimeToGo
             services.AddSingleton<IMapsService, MapsService.Libs.Services.MapsService>();
             services.AddSingleton<IGetDirections, GetDirections>();
             services.AddSingleton<IFlightService, FlightService.Libs.Services.FlightService>();
+            services.AddSingleton<IGetFlight, GetFlight>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
