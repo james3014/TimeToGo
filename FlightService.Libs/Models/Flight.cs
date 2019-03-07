@@ -6,29 +6,30 @@ namespace FlightService.Libs.Models
 {
     public class Flight
     {
-        public class Scheduled
+        public class Enroute
         {
-            public string Ident { get; set; }
-            public string Aircrafttype { get; set; }
-            public int Filed_departuretime { get; set; }
-            public int Estimatedarrivaltime { get; set; }
-            public string Origin { get; set; }
-            public string Destination { get; set; }
-            public string OriginName { get; set; }
-            public string OriginCity { get; set; }
-            public string DestinationName { get; set; }
-            public string DestinationCity { get; set; }
+            public string ident { get; set; }
+            public string aircrafttype { get; set; }
+            public int actualdeparturetime { get; set; }
+            public int estimatedarrivaltime { get; set; }
+            public int filed_departuretime { get; set; }
+            public string origin { get; set; }
+            public string destination { get; set; }
+            public string originName { get; set; }
+            public string originCity { get; set; }
+            public string destinationName { get; set; }
+            public string destinationCity { get; set; }
         }
 
-        public class ScheduledResult
+        public class EnrouteResult
         {
-            public int Next_offset { get; set; }
-            public List<Scheduled> Scheduled { get; set; }
+            public int next_offset { get; set; }
+            public List<Enroute> enroute { get; set; }
         }
 
         public class RootObject
         {
-            public ScheduledResult ScheduledResult { get; set; }
+            public EnrouteResult EnrouteResult { get; set; }
         }
     }
 }
