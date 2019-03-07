@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MapsService.Libs.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static MapsService.Libs.Models.MapModel;
 
 namespace TimeToGo.Controllers
 {
@@ -20,7 +21,7 @@ namespace TimeToGo.Controllers
         [HttpGet("get/directions/{origin}&{destination}")]
         public async Task<IActionResult> GetDirections(string origin, string destination)
         {
-            var result = await _mapsService.GetDirectionFromParameters(origin, destination);
+            RootObject result = await _mapsService.GetDirectionFromParameters(origin, destination);
 
             return Ok(result);
         }

@@ -26,7 +26,7 @@ namespace FlightService.Libs.Flights
 
                 string json;
 
-                using (var content = response.Content)
+                using (HttpContent content = response.Content)
                 {
                     json = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }

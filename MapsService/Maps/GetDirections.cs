@@ -13,16 +13,16 @@ namespace MapsService.Libs.Maps
     {
         public async Task<RootObject> ReturnDirectionsFromParameters(string origin, string destination)
         {
-            using (var client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 const string mapsKey = "INSERT API KEY";
-                var url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
+                Uri url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
 
-                var response = await client.GetAsync(url).ConfigureAwait(false);
+                HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
 
                 string json;
 
-                using (var content = response.Content)
+                using (HttpContent content = response.Content)
                 {
                     json = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }
