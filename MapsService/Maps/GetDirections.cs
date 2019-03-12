@@ -16,7 +16,7 @@ namespace MapsService.Libs.Maps
             using (HttpClient client = new HttpClient())
             {
                 // This tells Google which API key should be used for the request and is passed at the end of the URL.
-                const string mapsKey = "INSERT API KEY";
+                const string mapsKey = "AIzaSyDe-lBQC5Qpk4NVcDHuqTFNPYmAyNQRTtk";
 
                 // GET request URL
                 Uri url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");

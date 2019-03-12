@@ -18,7 +18,7 @@ namespace FlightService.Libs.Flights
                 // Basic authentication headers are added to the HttpClient 'client' before a request is made.
                 // This tells Flight Aware which username and API key should be used for the request.
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic",
-                    Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", "INSERT USERNAME", "INSERT API KEY"))));
+                    Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", "james3014", " 613f548bc36629f6e0ceb1ef21babcde33fb26a9"))));
 
                 // GET request URL
                 Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/Enroute?airport={airport}&howMany={howMany}&filter={filter}&offset={offset}");
