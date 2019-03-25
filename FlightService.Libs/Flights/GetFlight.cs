@@ -5,13 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static FlightService.Libs.Models.Flight;
 
 namespace FlightService.Libs.Flights
 {
     public class GetFlight : IGetFlight
     {
-        public async Task<RootObject> ReturnArrivalFromParameters(string airport, int howMany, string filter, int offset)
+        public async Task<string> ReturnArrivalFromParameters(string airport, int howMany, string filter, int offset)
         { 
             using (HttpClient client = new HttpClient())
             {
@@ -36,11 +35,8 @@ namespace FlightService.Libs.Flights
                     json = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }
 
-                //The json string is then deserialized using JsonConvert into a RootObject model.
-                RootObject result = JsonConvert.DeserializeObject<RootObject>(json);
+                return json;
 
-                // Finally the result is returned to the Time To Go API.
-                return result;
 
             }
         }

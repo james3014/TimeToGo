@@ -1,17 +1,15 @@
-﻿using MapsService.Libs.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static MapsService.Libs.Models.MapModel;
 
 namespace MapsService.Libs.Maps
 {
     public class GetDirections : IGetDirections
     {
-        public async Task<RootObject> ReturnDirectionsFromParameters(string origin, string destination)
+        public async Task<string> ReturnDirectionsFromParameters(string origin, string destination)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -25,20 +23,17 @@ namespace MapsService.Libs.Maps
                 // The response from Google Directions is stored as a HttpResponseMessage.
                 HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
 
-                string json;
+                string mapsJson;
 
                 // This takes the HTTP response and extracts the content. 
                 using (HttpContent content = response.Content)
                 {
                     // This is then assigned to the 'json' string
-                    json = await content.ReadAsStringAsync().ConfigureAwait(false);
+                    mapsJson = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }
 
-                //The json string is then deserialized using JsonConvert into a RootObject model.
-                RootObject result = JsonConvert.DeserializeObject<RootObject>(json);
-
                 // Finally the result is returned to the Time To Go API.
-                return result;
+                return mapsJson;
             }
         }
     }
