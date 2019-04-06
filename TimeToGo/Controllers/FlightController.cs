@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TimeToGo.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class FlightController : ControllerBase
     {
         private IFlightService _flightService;
@@ -17,7 +19,7 @@ namespace TimeToGo.Api.Controllers
             _flightService = flightService;
         }
 
-        [HttpGet("get/flights/{airport}&{howMany}&{filter}&{offset}")]
+        [HttpGet("/flights/{airport}&{howMany}&{filter}&{offset}")]
         public async Task<OkObjectResult> GetFlight(string airport, int howMany, string filter, int offset)
         {
             string result = await _flightService.GetFlightFromParameters(airport, howMany, filter, offset);

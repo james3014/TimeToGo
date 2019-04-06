@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TimeToGo.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class MapsController : ControllerBase
     {
         private readonly IMapsService _mapsService;
@@ -17,7 +19,7 @@ namespace TimeToGo.Controllers
             _mapsService = mapsService;
         }
 
-        [HttpGet("get/directions/{origin}&{destination}")]
+        [HttpGet("/directions/{origin}&{destination}")]
         public async Task<OkObjectResult> GetDirections(string origin, string destination)
         {
             string result = await _mapsService.GetDirectionFromParameters(origin, destination);

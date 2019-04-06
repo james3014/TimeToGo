@@ -30,10 +30,10 @@ namespace TimeToGo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<IMapsService, MapsService.Libs.Services.MapsService>();
-            services.AddSingleton<IGetDirections, GetDirections>();
-            services.AddSingleton<IFlightService, FlightService.Libs.Services.FlightService>();
-            services.AddSingleton<IGetFlight, GetFlight>();
+            services.AddTransient<IMapsService, MapsService.Libs.Services.MapsService>();
+            services.AddTransient<IGetDirections, GetDirections>();
+            services.AddTransient<IFlightService, FlightService.Libs.Services.FlightService>();
+            services.AddTransient<IGetFlight, GetFlight>();
             services.AddCors();
         }
 
