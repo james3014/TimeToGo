@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using MapsService.Libs.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static MapsService.Libs.Models.MapModel;
 
 namespace TimeToGo.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class MapsController : ControllerBase
     {
@@ -19,10 +19,10 @@ namespace TimeToGo.Controllers
             _mapsService = mapsService;
         }
 
-        [HttpGet("/directions/{origin}&{destination}")]
-        public async Task<OkObjectResult> GetDirections(string origin, string destination)
+        [HttpGet("/directions/{origin}")]
+        public async Task<IActionResult> GetDirections(string origin)
         {
-            string result = await _mapsService.GetDirectionFromParameters(origin, destination);
+            RootObject result = await _mapsService.GetDirectionFromParameters(origin);
 
             return Ok(result);
         }

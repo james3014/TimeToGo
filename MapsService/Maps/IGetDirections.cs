@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using static MapsService.Libs.Models.MapModel;
 
 namespace MapsService.Libs.Maps
 {
     public interface IGetDirections
     {
-        Task<string> ReturnDirectionsFromParameters(string origin, string destination);
+        Task<RootObject> ReturnDirectionsFromParameters(string origin);
     }
 }

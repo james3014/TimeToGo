@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using static FlightService.Libs.Models.Flight;
 
 namespace FlightService.Libs.Services
 {
@@ -17,9 +18,9 @@ namespace FlightService.Libs.Services
         }
 
 
-        public async Task<string> GetFlightFromParameters(string airport, int howMany, string filter, int offset)
+        public async Task<RootObject> GetFlight()
         {
-            return await _getFlight.ReturnArrivalFromParameters(airport, howMany, filter, offset);
+            return await _getFlight.ReturnArrival();
         }
 
 

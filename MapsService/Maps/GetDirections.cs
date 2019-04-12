@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using static MapsService.Libs.Models.MapModel;
 
 namespace MapsService.Libs.Maps
 {
     public class GetDirections : IGetDirections
     {
-        public async Task<string> ReturnDirectionsFromParameters(string origin, string destination)
+        public async Task<RootObject> ReturnDirectionsFromParameters(string origin)
         {
             using (HttpClient client = new HttpClient())
             {
                 // This tells Google which API key should be used for the request and is passed at the end of the URL.
-                const string mapsKey = "AIzaSyDe-lBQC5Qpk4NVcDHuqTFNPYmAyNQRTtk";
+                const string mapsKey = "INSERT API KEY";
+
+                string destination = "Glasgow Airport";
 
                 // GET request URL
                 Uri url = new Uri($"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={destination}&key={mapsKey}");
@@ -32,8 +35,11 @@ namespace MapsService.Libs.Maps
                     mapsJson = await content.ReadAsStringAsync().ConfigureAwait(false);
                 }
 
+                //The json string is then deserialized using JsonConvert into a RootObject model.
+                RootObject result = JsonConvert.DeserializeObject<RootObject>(mapsJson);
+
                 // Finally the result is returned to the Time To Go API.
-                return mapsJson;
+                return result;
             }
         }
     }

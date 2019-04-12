@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using FlightService.Libs.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static FlightService.Libs.Models.Flight;
 
 namespace TimeToGo.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class FlightController : ControllerBase
     {
@@ -19,10 +19,10 @@ namespace TimeToGo.Api.Controllers
             _flightService = flightService;
         }
 
-        [HttpGet("/flights/{airport}&{howMany}&{filter}&{offset}")]
-        public async Task<OkObjectResult> GetFlight(string airport, int howMany, string filter, int offset)
+        [HttpGet("/flights")]
+        public async Task<IActionResult> GetFlight()
         {
-            string result = await _flightService.GetFlightFromParameters(airport, howMany, filter, offset);
+            RootObject result = await _flightService.GetFlight();
 
             return Ok(result);      
         }
