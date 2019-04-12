@@ -11,7 +11,7 @@ namespace FlightService.Libs.Flights
 {
     public interface IGetFlight
     {
-        Task<AirlineRootObject> ReturnSchedule();
+        Task<AirlineRootObject> ReturnSchedule(string startDate, string endDate, string origin);
         Task<FlightIdRootObject> ReturnFlightId(string ident, string departureTime);
         Task<FlightInfoRootObject> ReturnFlightInfo(string ident);
         Task<AirportRootObject> ReturnAirportInfo();

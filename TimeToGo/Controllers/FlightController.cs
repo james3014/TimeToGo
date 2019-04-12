@@ -22,10 +22,10 @@ namespace TimeToGo.Api.Controllers
             _flightService = flightService;
         }
 
-        [HttpGet("/airlineschedule")]
-        public async Task<IActionResult> GetAirlineSchedule()
+        [HttpGet("/airlineschedule/{startDate}&{endDate}&{origin}")]
+        public async Task<IActionResult> GetAirlineSchedule(string startDate, string endDate, string origin)
         {
-            AirlineRootObject result = await _flightService.GetAirlineSchedule();
+            AirlineRootObject result = await _flightService.GetAirlineSchedule(startDate, endDate, origin);
 
             return Ok(result);      
         }

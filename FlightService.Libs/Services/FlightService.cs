@@ -21,9 +21,9 @@ namespace FlightService.Libs.Services
             _getFlight = getFlight;
         }
 
-        public async Task<AirlineRootObject> GetAirlineSchedule()
+        public async Task<AirlineRootObject> GetAirlineSchedule(string startDate, string endDate, string origin)
         {
-            return await _getFlight.ReturnSchedule();
+            return await _getFlight.ReturnSchedule(startDate, endDate, origin);
         }
 
         public async Task<AirportRootObject> GetAirportInfo()

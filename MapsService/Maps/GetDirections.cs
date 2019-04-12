@@ -15,7 +15,7 @@ namespace MapsService.Libs.Maps
             using (HttpClient client = new HttpClient())
             {
                 // This tells Google which API key should be used for the request and is passed at the end of the URL.
-                const string mapsKey = "INSERT API KEY";
+                const string mapsKey = "API KEY";
 
                 string destination = "Glasgow Airport";
 

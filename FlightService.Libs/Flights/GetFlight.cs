@@ -13,10 +13,10 @@ namespace FlightService.Libs.Flights
 {
     public class GetFlight : IGetFlight
     {
-        private readonly string username = "INSERT USERNAME";
-        private readonly string apiKey = "INSERT API KEY";
+        private readonly string username = "USERNAME";
+        private readonly string apiKey = "API KEY";
 
-        public async Task<AirlineRootObject> ReturnSchedule()
+        public async Task<AirlineRootObject> ReturnSchedule(string startDate, string endDate, string origin)
         { 
             using (HttpClient client = new HttpClient())
             {
@@ -25,11 +25,11 @@ namespace FlightService.Libs.Flights
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, apiKey))));
 
-                int startDate = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                int endDate = startDate + 43200;
+                //int startDate = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                //int endDate = startDate + 43200;
 
                 // GET request URL
-                Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirlineFlightSchedules?startDate={startDate}&endDate={endDate}&destination=EGPF&howMany=10&offset=0");
+                Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirlineFlightSchedules?startDate={startDate}&endDate={endDate}&origin={origin}&destination=EGPF&howMany=10&offset=0");
 
                 // The client is passed the url for the request.
                 // The response from Flight Aware is stored as a HttpResponseMessage.

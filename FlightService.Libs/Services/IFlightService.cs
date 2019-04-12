@@ -11,7 +11,7 @@ namespace FlightService.Libs.Services
 {
     public interface IFlightService
     {
-        Task<AirlineRootObject> GetAirlineSchedule();
+        Task<AirlineRootObject> GetAirlineSchedule(string startDate, string endDate, string origin);
         Task<FlightIdRootObject> GetFlightId(string ident, string departureTime);
         Task<FlightInfoRootObject> GetFlightInfo(string ident);
         Task<AirportRootObject> GetAirportInfo();
