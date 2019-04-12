@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FlightService.Libs.Models
 {
-    public class Flight
+    public class AirlineSchedule
     {
         public class Datum
         {
@@ -27,7 +27,7 @@ namespace FlightService.Libs.Models
             public List<Datum> Data { get; set; }
         }
 
-        public class RootObject
+        public class AirlineRootObject
         {
             public AirlineFlightSchedulesResult AirlineFlightSchedulesResult { get; set; }
         }
