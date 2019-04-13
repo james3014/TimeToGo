@@ -14,6 +14,6 @@ namespace FlightService.Libs.Services
         Task<AirlineRootObject> GetAirlineSchedule(string startDate, string endDate, string origin);
         Task<FlightIdRootObject> GetFlightId(string ident, string departureTime);
         Task<FlightInfoRootObject> GetFlightInfo(string ident);
-        Task<AirportRootObject> GetAirportInfo();
+        Task<AirportRootObject> GetAirportInfo(string airportCode);
     }
 }

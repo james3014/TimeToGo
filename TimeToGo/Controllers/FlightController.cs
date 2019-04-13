@@ -46,10 +46,10 @@ namespace TimeToGo.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/airport")]
-        public async Task<IActionResult> GetAirport()
+        [HttpGet("/airport/{airportCode}")]
+        public async Task<IActionResult> GetAirport(string airportCode)
         {
-            AirportRootObject result = await _flightService.GetAirportInfo();
+            AirportRootObject result = await _flightService.GetAirportInfo(airportCode);
 
             return Ok(result);
         }

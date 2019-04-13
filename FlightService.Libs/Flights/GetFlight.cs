@@ -118,14 +118,14 @@ namespace FlightService.Libs.Flights
             }
         }
 
-        public async Task<AirportRootObject> ReturnAirportInfo()
+        public async Task<AirportRootObject> ReturnAirportInfo(string airportCode)
         {
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, apiKey))));
 
-                Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirportInfo?airportCode=EGPF");
+                Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirportInfo?airportCode={airportCode}");
 
                 HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
 
