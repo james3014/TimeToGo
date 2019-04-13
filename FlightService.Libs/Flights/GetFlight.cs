@@ -13,8 +13,8 @@ namespace FlightService.Libs.Flights
 {
     public class GetFlight : IGetFlight
     {
-        private readonly string username = "mcneillwins";
-        private readonly string apiKey = "1df12a43d927b884126907240458056ae772c0cf";
+        private readonly string username = "USERNAME";
+        private readonly string apiKey = "API KEY";
 
         public async Task<AirlineRootObject> ReturnSchedule(string startDate, string endDate, string origin)
         { 
