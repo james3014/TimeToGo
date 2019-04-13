@@ -13,8 +13,8 @@ namespace FlightService.Libs.Flights
 {
     public class GetFlight : IGetFlight
     {
-        private readonly string username = "USERNAME";
-        private readonly string apiKey = "API KEY";
+        private readonly string username = "mcneillwins";
+        private readonly string apiKey = "1df12a43d927b884126907240458056ae772c0cf";
 
         public async Task<AirlineRootObject> ReturnSchedule(string startDate, string endDate, string origin)
         { 
@@ -29,24 +29,44 @@ namespace FlightService.Libs.Flights
                 //int endDate = startDate + 43200;
 
                 // GET request URL
-                Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirlineFlightSchedules?startDate={startDate}&endDate={endDate}&origin={origin}&destination=EGPF&howMany=10&offset=0");
-
-                // The client is passed the url for the request.
-                // The response from Flight Aware is stored as a HttpResponseMessage.
-                HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
-
-                string json;
-
-                // This takes the HTTP response and extracts the content.   
-                using (HttpContent content = response.Content)
+                if (origin != "*")
                 {
-                    // This is then assigned to the 'json' string
-                    json = await content.ReadAsStringAsync().ConfigureAwait(false);
+                    Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirlineFlightSchedules?startDate={startDate}&endDate={endDate}&origin={origin}&destination=EGPF&howMany=10&offset=0");
+
+                    HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
+
+                    // The client is passed the url for the request.
+                    // The response from Flight Aware is stored as a HttpResponseMessage.
+                    string json;
+
+                    // This takes the HTTP response and extracts the content.   
+                    using (HttpContent content = response.Content)
+                    {
+                        // This is then assigned to the 'json' string
+                        json = await content.ReadAsStringAsync().ConfigureAwait(false);
+                    }
+
+                    AirlineRootObject result = JsonConvert.DeserializeObject<AirlineRootObject>(json);
+
+                    return result;
                 }
+                else
+                {
+                    Uri url = new Uri($"http://flightxml.flightaware.com/json/FlightXML2/AirlineFlightSchedules?startDate={startDate}&endDate={endDate}&destination=EGPF&howMany=10&offset=0");
 
-                AirlineRootObject result = JsonConvert.DeserializeObject<AirlineRootObject>(json);
+                    HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
 
-                return result;
+                    string json;
+
+                    using (HttpContent content = response.Content)
+                    {
+                        json = await content.ReadAsStringAsync().ConfigureAwait(false);
+                    }
+
+                    AirlineRootObject result = JsonConvert.DeserializeObject<AirlineRootObject>(json);
+
+                    return result;
+                }
             }
         }
 
